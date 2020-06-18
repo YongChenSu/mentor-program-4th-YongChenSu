@@ -1,5 +1,5 @@
 ## 交作業流程
-1. 在「設定 GitHub 專案」的課程影片上方，點選 「GitHuba classroom 網址」
+1. 在「設定 GitHub 專案」的課程影片上方，點選 「GitHub classroom 網址」
 2. 接受邀請後，會自動新增一個 repo，複製一份第四期課綱到自己的 GitHub 帳號底下
 
    ![](https://i.imgur.com/nKze3TX.png)
