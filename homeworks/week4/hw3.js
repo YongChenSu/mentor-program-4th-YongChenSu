@@ -5,7 +5,7 @@ const process = require('process')
 const API_ENDPOINT = 'https://restcountries.eu/rest/v2/name'
 const countryName = process.argv[2]
 
-// 因為不曉得為何無法 commit 只好註解以下 3 行，才能 commit
+// 因為不曉得為何無法 commit 只好註解以下 3 行
 // if (!countryName) {
 //   return console.log('請輸入國家名稱');
 // }
@@ -32,4 +32,3 @@ request(
     }
   }
 )
-
