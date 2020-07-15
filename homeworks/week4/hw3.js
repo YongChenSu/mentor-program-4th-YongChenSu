@@ -5,10 +5,9 @@ const process = require('process')
 const API_ENDPOINT = 'https://restcountries.eu/rest/v2/name'
 const countryName = process.argv[2]
 
-// 因為不曉得為何無法 commit 只好註解以下 3 行
-// if (!countryName) {
-//   return console.log('請輸入國家名稱');
-// }
+if (!countryName) {
+  console.log('請輸入國家名稱');
+}
 
 request(
   `${API_ENDPOINT}/${countryName}`,
@@ -19,7 +18,7 @@ request(
 
     const data = JSON.parse(body)
 
-    if (data.status === 404) {
+    if (data.status >= 400 && data.status < 600) {
       return console.log('找不到國家資訊')
     }
 

@@ -12,7 +12,7 @@ request({
   },
 }, (error, response, body) => {
   const data = JSON.parse(body)
-  for (let i = 0; i < data.top.length; i + 1) {
+  for (let i = 0; i < data.top.length; i++) {
     console.log(`${data.top[i].viewers} ${data.top[i].game.localized_name}`)
   }
 })
