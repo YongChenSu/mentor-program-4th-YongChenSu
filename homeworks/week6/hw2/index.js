@@ -8,7 +8,7 @@ const labelForground = document.querySelector('label[for=ground]')
 const infoSource = document.querySelector('input[name=info-source]')
 const otherSuggetion = document.querySelector('input[name=other-suggestion]')
 
-element.addEventListener('submit', function (event) {
+element.addEventListener('submit', (event) => {
   if (// 填寫完成必填項目
     (nickname.value !== '') &&
     (email.value !== '') &&
@@ -37,48 +37,48 @@ element.addEventListener('submit', function (event) {
     }
   } else { // 沒有填寫完成必填項目
     if (nickname.value === '') {
-      nickname.nextSibling.innerHTML = '請填寫暱稱'
-      nickname.nextSibling.classList.add('submit-reminding')
+      nickname.nextElementSibling.innerHTML = '請填寫暱稱'
+      nickname.nextElementSibling.classList.add('submit-reminding')
       event.preventDefault()
     } else {
-      nickname.nextSibling.innerHTML = ''
-      nickname.nextSibling.classList.remove('submit-reminding')
+      nickname.nextElementSibling.innerHTML = ''
+      nickname.nextElementSibling.classList.remove('submit-reminding')
     }
 
     if (email.value === '') {
-      email.nextSibling.innerHTML = '請填寫 email'
-      email.nextSibling.classList.add('submit-reminding')
+      email.nextElementSibling.innerHTML = '請填寫 email'
+      email.nextElementSibling.classList.add('submit-reminding')
       event.preventDefault()
     } else {
-      email.nextSibling.innerHTML = ''
-      email.nextSibling.classList.remove('submit-reminding')
+      email.nextElementSibling.innerHTML = ''
+      email.nextElementSibling.classList.remove('submit-reminding')
     }
 
     if (phone.value === '') {
-      phone.nextSibling.innerHTML = '請填寫手機號碼'
-      phone.nextSibling.classList.add('submit-reminding')
+      phone.nextElementSibling.innerHTML = '請填寫手機號碼'
+      phone.nextElementSibling.classList.add('submit-reminding')
       event.preventDefault()
     } else {
-      phone.nextSibling.innerHTML = ''
-      phone.nextSibling.classList.remove('submit-reminding')
+      phone.nextElementSibling.innerHTML = ''
+      phone.nextElementSibling.classList.remove('submit-reminding')
     }
 
     if ((program[0].checked === false) && (program[1].checked === false)) {
-      labelForground.nextSibling.innerHTML = '請選擇一項'
-      labelForground.nextSibling.classList.add('submit-reminding')
+      labelForground.nextElementSibling.innerHTML = '請選擇一項'
+      labelForground.nextElementSibling.classList.add('submit-reminding')
       event.preventDefault()
     } else {
-      labelForground.nextSibling.innerHTML = ''
-      labelForground.nextSibling.classList.remove('submit-reminding')
+      labelForground.nextElementSibling.innerHTML = ''
+      labelForground.nextElementSibling.classList.remove('submit-reminding')
     }
 
     if (infoSource.value === '') {
-      infoSource.nextSibling.innerHTML = '請填寫該欄位'
-      infoSource.nextSibling.classList.add('submit-reminding')
+      infoSource.nextElementSibling.innerHTML = '請填寫該欄位'
+      infoSource.nextElementSibling.classList.add('submit-reminding')
       event.preventDefault()
     } else {
-      infoSource.nextSibling.innerHTML = ''
-      infoSource.nextSibling.classList.remove('submit-reminding')
+      infoSource.nextElementSibling.innerHTML = ''
+      infoSource.nextElementSibling.classList.remove('submit-reminding')
     }
   }
 })
