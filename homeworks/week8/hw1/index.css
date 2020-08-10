@@ -1,0 +1,138 @@
+.lotto__method {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 4.45rem;
+  height: 40rem;
+  margin-bottom: 4.45rem;
+  padding: 0 1.5rem;
+  background-image: url(./pictures/games-bn.png);
+  background-size: cover cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.lotto__first, .lotto__second, .lotto__third, .lotto__none {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 4.45rem;
+  height: 40rem;
+  margin-bottom: 4.45rem;
+  padding: 0 1.5rem;
+  text-align: center;
+  background-size: cover cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.lotto__first {
+  background-image: url(./pictures/first.webp);
+}
+
+.lotto__second {
+  background-image: url(./pictures/second.webp);
+}
+
+.lotto__third {
+  background-image: url(./pictures/third.webp);
+}
+
+.lotto__none {
+  background-image: url();
+  background-image: linear-gradient(to top, #555 , #777 50%);
+}
+
+.prize__content {
+  position: relative;
+  top: 5rem;
+  color: black;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: relative;
+  background-color: #abcfd1;
+  /* background-color: #2a9d8f; */
+  opacity: 0.9;
+}
+
+.lotto__none .prize__content h1 {
+  color: white;
+}
+
+.lotto__card {
+  width: 500px;
+  height: 560px;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1.25rem 1rem;
+}
+
+.lotto__card__title {
+  font-size: 24px;
+  color: #5ec1b6;
+  font-weight: bold;
+  text-align: center;
+  margin: 1.5rem 2rem;
+}
+
+.lotto__card__content {
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  min-height: 3rem;
+  border-bottom: 1px dashed #ddd;
+  margin-top: 1rem;
+}
+
+.lotto__card__content h3 {
+  font-size: 18px;
+  margin: 0 1rem 0 0rem;
+  font-weight: bold;
+}
+
+.lotto__card__content p {
+  font-size: 1rem;
+  width: 320px;
+  line-height: 1.63;
+  color: #322929;
+}
+
+.lotto__button, .method__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 400px;
+  height: 55px;
+  margin: 1.5rem auto;
+  background-color: #f33a55;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  transition: all .1s;
+  font-weight: bold;
+}
+
+.lotto__button:hover {
+  background-color: #f72c49;
+  transform: scale(1.01);
+  filter: brightness(150%);
+}
+
+.method__button {
+  background-color: #c49f41;
+}
+
+.method__button:hover {
+  background-color: #c49f41;
+  transform: scale(1.01);
+  filter: brightness(110%);
+}
+
+@media (max-width: 767px) {
+  .lotto__card {
+    transform: scale(0.9);
+  }
+}
