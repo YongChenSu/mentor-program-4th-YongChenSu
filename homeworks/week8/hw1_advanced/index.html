@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中獎機率</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Times New Roman', '微軟正黑體';
+    }
+
+    body {
+      background-color: seashell;
+    }
+
+    .lotto {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      padding: 3rem;
+      margin: 7rem auto;
+    }
+
+    .title {
+      display: flex;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .form-container {
+      position: relative;
+    }
+
+    .form {
+      margin: 0rem auto;
+      padding: 2rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      font-size: 1.25rem;
+    }
+
+    .form th {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 0.5rem;
+      width: 120px;
+    }
+
+    .form td {
+      border: 1px solid #ccc;
+      text-align: right;
+      padding: 0.5rem;
+    }
+
+    .form td:first-child {
+      text-align: center;
+    }
+
+    .form tr:nth-child(odd) {
+      background-color: lemonchiffon;
+    }
+
+    .form__description {
+      font-size: 1.25rem;
+      padding: 0 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="lotto"></section>
+
+  <script>
+    const lotto = document.querySelector('.lotto')
+    const div = document.createElement('div')
+
+    let [
+      counter,
+      firstCount, secondCount, thirdCount, noneCount,
+      errorOneCount, errorTwoCount, errorThreeCount,
+      firstProbability, secondProbability, thirdProbability, noneProbability,
+      errorOneProbability, errorTwoProbability, errorThreeProbability
+    ] = [
+      0,
+      0, 0, 0, 0,
+      0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0
+    ]
+
+    let statusLength = 7
+
+    function formStatus(PRIZE) {
+      lotto.innerHTML = `
+        <div class="title">
+          「中獎」與「系統不穩」機率
+        </div>
+
+        <div class="form-container">
+          <table class="form">
+            <tr>
+              <th></th>
+              <th>First</th>
+              <th>Second</th>
+              <th>Third</th>
+              <th>None</th>
+              <th>Error 1</th>
+              <th>Error 2</th>
+              <th>Error 3</th>
+            </tr>
+            <tr>
+              <td>次數</td>
+              <td>${firstCount}</td>
+              <td>${secondCount}</td>
+              <td>${thirdCount}</td>
+              <td>${noneCount}</td>
+              <td>${errorOneCount}</td>
+              <td>${errorTwoCount}</td>
+              <td>${errorThreeCount}</td>
+            </tr>
+            <tr>
+              <td>機率 (%)</td>
+              <td>${firstProbability}</td>
+              <td>${secondProbability}</td>
+              <td>${thirdProbability}</td>
+              <td>${noneProbability}</td>
+              <td>${errorOneProbability}</td>
+              <td>${errorTwoProbability}</td>
+              <td>${errorThreeProbability}</td>
+            </tr>
+            <tr>
+              <td>結果 (%)</td>
+              <td>5</td>
+              <td>20</td>
+              <td>30</td>
+              <td>40</td>
+              <td>2</td>
+              <td>3</td>
+              <td>0</td>
+            </tr>
+          </table>
+
+          <div class="form__description">
+            <div>Error 1：Status Code 是 200，有回應但沒有獎次。</div>
+            <div>Error 2：Status Code 是 500，伺服器端錯誤。</div>
+            <div>Error 3：發送 request 失敗。</div>
+          </div>
+        </div>
+      `
+      lotto.appendChild(div)
+    }
+
+    const sendRequest = () => {
+      counter += 1
+
+      const request = new XMLHttpRequest()
+      request.onload = () => {
+        if (request.status >= 200 && request.status < 400) {
+          const data = JSON.parse(request.responseText)
+          const PRIZE = data.prize
+
+          switch (PRIZE) {
+            case 'FIRST':
+              firstCount += 1
+              firstProbability = (firstCount / counter * 100).toFixed(2)
+              formStatus(PRIZE)
+              break
+            case 'SECOND':
+              secondCount += 1
+              secondProbability = (secondCount / counter * 100).toFixed(2)
+              formStatus(PRIZE)
+              break
+            case 'THIRD':
+              thirdCount += 1
+              thirdProbability = (thirdCount / counter * 100).toFixed(2)
+              formStatus(PRIZE)
+              break
+            case 'NONE':
+              noneCount += 1
+              noneProbability = (noneCount / counter * 100).toFixed(2)
+              formStatus(PRIZE)
+              break
+            default:
+              errorOneCount += 1
+              errorOneProbability = (errorOneCount / counter * 100).toFixed(2)
+              formStatus(PRIZE)
+          }
+        } else {
+          errorTwoCount += 1
+          errorTwoProbability = (errorTwoCount / counter * 100).toFixed(2)
+          formStatus()
+        }
+      }
+
+      request.onerror = () => {
+        errorThreeCount += 1
+        errorThreeProbability = (errorThreeCount / counter * 100).toFixed(2)
+        formStatus()
+      }
+      request.open('GET', 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery', true)
+      request.send()
+    }
+
+    window.addEventListener('load', (event) => {
+      setInterval(sendRequest, 100)
+    })
+  </script>
+</body>
+
+</html>
