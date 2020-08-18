@@ -12,7 +12,6 @@ html, * {
 .app {
   background-color: #f7f7f8;
   position: relative;
-  /* position: relative; */
 }
 
 .heading {
@@ -84,7 +83,7 @@ html, * {
   font-size: 1rem;
   font-weight: bold;
   padding: 0 0 5px 0;
-
+  height: 50px;
 }
 
 /* ---------- Stream ---------- */
