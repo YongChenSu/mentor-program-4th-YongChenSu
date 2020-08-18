@@ -29,15 +29,15 @@ const sendRequest = (sendRequestUrl, callback) => {
         console.log(error)
         return
       }
-      callback(JSON.parse(request.response))
+      callback(json)
     }
   }
   request.send()
 }
 
 getTopGames = (gameData) => {
-  const nameArray = gameData.top.map(name => name.game.name)
-  gameName = nameArray[0]
+  const { name } = gameData.top[0].game
+  console.log(name)
   const topGameTemplate = gameData.top.map(topGame => `
     <div class="top__game__container">
       <img class="top__game__preview" src="${topGame.game.box.large}" alt="">
@@ -46,7 +46,7 @@ getTopGames = (gameData) => {
   `).join('')
 
   topGames.innerHTML = topGameTemplate
-  sendRequest(`https://api.twitch.tv/kraken/streams/?game=${gameName}&limit=${streamNum}`, getStreams)
+  sendRequest(`https://api.twitch.tv/kraken/streams/?game=${name}&limit=${streamNum}`, getStreams)
 }
 
 getStreams = (streamData) => {
@@ -54,37 +54,37 @@ getStreams = (streamData) => {
     <button class="load">MORE</button>
   `
   const streamTemplate = streamData.streams.map(item => `
-      <div class="stream__container">
-        <div class="stream">
-          <a href="${item.channel.url} target="_blank">
-            <img class='stream__preview' src="${item.preview.large}" alt="">
-          </a>
-          <div class="stream__info">
-            <img class="stream__logo" src="${item.channel.logo}" alt="">
-            <div>
-              <div class="stream__name">${item.channel.name}</div>
-              <div class="stream__status">${item.channel.status}</div>
-            </div>
+    <div class="stream__container">
+      <div class="stream">
+        <a href="${item.channel.url} target="_blank">
+          <img class='stream__preview' src="${item.preview.large}" alt="">
+        </a>
+        <div class="stream__info">
+          <img class="stream__logo" src="${item.channel.logo}" alt="">
+          <div>
+            <div class="stream__name">${item.channel.name}</div>
+            <div class="stream__status">${item.channel.status}</div>
           </div>
         </div>
       </div>
-    `).join('')
+    </div>
+  `).join('')
 
   streams.innerHTML = streamTemplate
   main.appendChild(div)
 }
 
-main.addEventListener('click', (event) => {
-  if (event.target.classList.contains('load')) {
-    streamNum += 20
-    sendRequest(`https://api.twitch.tv/kraken/streams/?game=${gameName}&limit=${streamNum}`, getStreams)
-  }
-})
-
 topGames.addEventListener('click', (event) => {
   streamNum = 20
   if (event.target.parentNode.children[1].classList.contains('top__game__name')) {
     gameName = event.target.parentNode.innerText
+    sendRequest(`https://api.twitch.tv/kraken/streams/?game=${gameName}&limit=${streamNum}`, getStreams)
+  }
+})
+
+main.addEventListener('click', (event) => {
+  if (event.target.classList.contains('load')) {
+    streamNum += 20
     sendRequest(`https://api.twitch.tv/kraken/streams/?game=${gameName}&limit=${streamNum}`, getStreams)
   }
 })
