@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOARD 3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+</head>
+<body>
+  <header class="warning">
+    <strong>WARNING! THIS SITE IS FOR PHP PRACTICING AND UNSECURED. PLS DONT'T USE REAL-LIFE USERNAME AND PASSWORD.</strong>
+  </header>
+  <main class="board">
+    <div class="board__title">
+      <h1>SAY SOMETHING ...</h1>
+      <form class="board__comment-form">
+        <textarea name="content" placeholder="PLEASE ENTER A MESSAGE"></textarea>
+          <input class="board__submit-btn" type="submit" value="SEND"">
+        </form>
+    </div>
+    <section>
+    </section>
+  </main>
+  <script>
+    let request = new XMLHttpRequest()
+    request.open('GET', './api_comments.php', true)
+    request.onload = function() {
+      if (this.status >= 200 && this.status < 400) {
+        let resp = this.response
+        let json = JSON.parse(resp)
+        let comments = json.comments
+        
+        let card = document.querySelector('.card')
+        for (let i=0; i<comments.length; i++) {
+          let comment = comments[i]
+          let div = document.createElement('div')
+          div.classList.add('card')
+          div.innerHTML = `
+            <div class="card__avatar__container">
+              <div class="card__avatar"></div>
+            </div>
+            <div class="card__body">
+              <div class="card__info">
+                <span class="card__author">
+                  ${comment.nickname}(@${comment.username})
+                </span>
+                <span class="card__time">${comment.created_at}</span>
+                </div>
+                <div class="card__content">${encodeHTML(comment.content)}</div>
+            </div>
+          `
+          document.querySelector('section').appendChild(div)
+        }
+      }
+    }
+    request.send()
+
+    let form = document.querySelector('.board__comment-form')
+    form.addEventListener('submit', function(e) {
+      e.preventDefault()
+      let content = document.querySelector('textarea[name=content]').value
+
+      let request = new XMLHttpRequest()
+      request.open('POST', 'api_add_comment.php', true)
+      request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+      request.send("username=aaa&content=" + encodeURIComponent(content))
+
+      request.onload = function() {
+        if (this.status >= 200 && this.status < 400) {
+          let resp = this.response
+          let json =JSON.parse(resp)
+          if (json.ok) {
+            location.reload()
+          } else {
+            alert(resp)
+          }
+        }
+      }
+    })
+
+    function encodeHTML(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
