@@ -43,10 +43,14 @@
 - API設計（以目前形態來說，多數公司會讓後端工程師從資料庫取出資料撰寫成json格式提供給前台去呈現資料）
 - Cloud(雲端操作) （Google Cloud、Microsoft Azure、Amazon Web Services (AWS)）
 
+<<<<<<< HEAD
 ## 假設我今天去 Google 首頁搜尋框打上：JavaScri[t 並且按下 Enter，請說出從這一刻開始到我看到搜尋結果為止發生在背後的事情。
 1. client 送出一個 request，到 server
 2. server 把 rerequest，存到 database 裡面
 3. 成功存到 database 裡面之後，server 把 response (結果) 回傳到 client
+=======
+## 假設我今天去 Google 首頁搜尋框打上：JavaScript 並且按下 Enter，請說出從這一刻開始到我看到搜尋結果為止發生在背後的事情。
+>>>>>>> 6f22840322266d7bdcc490c4989fb3cc23cb0c37
 
 ![](https://i.imgur.com/Ud5OELk.png)
 
