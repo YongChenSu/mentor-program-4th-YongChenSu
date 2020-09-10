@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lidemy Todo List</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <script></script>
+</head>
+<body>
+  <div class="container">
+    <div class="list">
+      <h1 class="title">Todo List</h1>
+      <div class="add">
+        <input class="add__input" type="text" placeholder="Add something to do here ヽ(●´∀`●)ﾉ">
+      </div>
+
+      <div class="todo__list">
+        <div class="todo__item">
+          <input type="checkbox" class="item__checkbox" />
+          <input type="text" value="教練，我好想寫程式"" class="item__text" />
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="todo__item">
+          <input type="checkbox" class="item__checkbox" />
+          <input type="text" value="嗚嗚嗚～我不想寫程式了" class="item__text" />
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="todo__item">
+          <input type="checkbox" class="item__checkbox" />
+          <input type="text" value="別管什麼進度了，出去玩吧 (,,・ω・,,)  " class="item__text"/>
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="todo__num">3 items left</div>
+        <div class="filters">
+          <li class="selected all">All</li>
+          <li class="active">Active</li>
+          <li class="completed">Completed</li>
+        </div>
+        <div class="clear"><a href="">Clear Completed</a></div>
+      </footer>
+    </div>
+  <div>
+  <script src="https://kit.fontawesome.com/d270490eb6.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
