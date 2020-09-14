@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API 留言板</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <style>
+    .hide {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container w-75 my-3">
+    <form class="add-comment-form my-3">
+      <div class="form-group">
+        <label for="form-nickname">暱稱</label>
+        <input name="nickname" class="form-control" id="form-nickname">
+      </div>
+      <div class="form-group">
+        <label for="form-control">留言內容</label>
+        <textarea name="content" class="form-control" id="form-control" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div class="comments"></div>
+    <form action="">
+      <input type="hidden" name="$item_num">
+      <button type="button" class="btn btn-danger load-more">MORE</button>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>
