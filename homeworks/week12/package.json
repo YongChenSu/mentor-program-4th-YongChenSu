@@ -1,0 +1,23 @@
+{
+  "name": "week12",
+  "version": "1.0.0",
+  "description": "之前在 BE101 的最後，有做了一個留言板的 API，並且自己利用前端 JS 去串接，有顯示留言跟新增留言這兩個功能，如果你忘記的話可以回去複習一下。",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^4.14.1"
+  }
+}
