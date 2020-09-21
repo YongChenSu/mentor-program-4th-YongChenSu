@@ -8,3 +8,6 @@
 
 
 ## 資料庫的 ACID 是什麼？
+
+### 參考資料
+[DNS 是什麼？](https://www.stockfeel.com.tw/dns-%E4%BC%BA%E6%9C%8D%E5%99%A8%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F%E5%A6%82%E4%BD%95%E9%81%8B%E7%94%A8%EF%BC%9F/)
